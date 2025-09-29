@@ -12,7 +12,7 @@
 
 
 .Headers {
-    height:30%;
+    height:10%;
       display: flex;
     justify-content: space-evenly; 
    
@@ -20,13 +20,17 @@
 
 .LeftNavi{
     width: 30%;
+    height:100%;
 }
 
 .RightContent{
      width: 70%;
+     height:100%;
 }
 
 .Contents{
     width: 100%;
-    
+     display: flex;
+    justify-content: space-evenly;
+    height:90%;
 }
