@@ -4,6 +4,8 @@ import styles from "./components.module.css"
 import useAuthStore from "../store/authStore"
 import {Link} from "react-router-dom"
 
+axios.defaults.withCredentials = true;
+
 const LoginComponent = () => {
 
     const login = useAuthStore((state) => state.login);
@@ -21,11 +23,15 @@ const LoginComponent = () => {
 
 
     const handleLoggin = () =>{
-        axios.get(`http://10.5.5.2/member/login?id=${loginInfo.id}&pw=${loginInfo.pw}`)
+
+        axios.post(`http://10.5.5.1/member/login`, loginInfo)
         .then(e=>{
-            console.log(e);
-            if(e.data){
-                login(loginInfo.id);
+          
+            if(e.data.status==="success"){
+                login(e.data.loginId);
+            }else{
+                
+                alert("로그인에 실패했습니다.")
             }
             
         })

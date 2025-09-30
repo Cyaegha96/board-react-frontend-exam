@@ -29,15 +29,13 @@ const JoinPage = () => {
   const handleSubmit = (e) => {
     console.log(form);
     e.preventDefault();
-    axios.post("http://10.5.5.2/member/join", form).then(resp=>(console.log(resp)))
+    axios.post("http://localhost/member/join", form).then(resp=>(console.log(resp)))
   };
    
   
     return (
         <>
-        <div >
-            <h2>회원가입</h2>
-        </div>
+       
         <div className={styles.signUpBox}>
       <h2>회원가입</h2>
       <form onSubmit={handleSubmit}>

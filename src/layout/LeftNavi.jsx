@@ -1,12 +1,25 @@
 import styles from "./layout.module.css"
-
+import LoginComponent from "../components/LoginComponent";
+import { useState } from "react";
+import useAuthStore from "../store/authStore";
+import axios from "axios";
 
 const LeftNavi = () => {
-    return(
-     
+     const {loginId , isLoggedIn} = useAuthStore();
+
+  const logout = useAuthStore((state) => state.logout);
+
+  const handleLogout = ()=>{
+    axios.post("http://10.5.5.1/member/logout").then(logout());
+  }
+
+    return (
+       <>
         <div className={styles.LeftNavi}>
-            왼쪽 네비바
+        {isLoggedIn ? <div>로그인되었습니다. 아이디: {loginId} <button onClick={handleLogout}>로그아웃</button></div>:<LoginComponent/>}
         </div>
+       </>
+       
     )
 }
 
