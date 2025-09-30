@@ -1,31 +1,21 @@
 import { useState } from "react";
+import styles from "./components.module.css"
 import api from '../utils/api';
 import  {useNavigate}  from "react-router-dom";
 
-const SignUpComponent = ({url,btns})=>{
+const SignUpComponent = ({url,btns, form, setForm,pageName})=>{
 
     const navigate = useNavigate();
 
-    const [form,setForm] = useState({
-            id:"",
-            pw:"",
-            pwConfirm:"",
-            name:"",
-            phone:"",
-            email:"",
-            zoneCode:"",
-            address1:"",
-            address2:"",
-            joinDate:""
-        });
-
-const handleSubmit = (e) => {
-    console.log(form);
-    e.preventDefault();
-    api.post(url, form)
-    .then(resp=>(console.log(resp)))
-    .then(navigate("/"))
-  };
+  const handleSubmit = (e) => {
+      console.log(form);
+      e.preventDefault();
+      api.post(url, form)
+      .then(resp=>(console.log(resp)))
+      .then(()=>{if(pageName=="회원가입"){
+        navigate("/")}
+      })
+    };
 
         const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,13 +26,17 @@ const handleSubmit = (e) => {
   };
 
     return(
-        <form onSubmit={handleSubmit}>
+       
+        <div className={styles.formContent}>
+         
+ <form onSubmit={handleSubmit}>
+   <h2>{pageName}</h2>
         <div>
           <label>아이디 : </label>
-          <input type="text" name="id" value={form.id} onChange={handleChange} />
+          <input type="text" name="id" value={form.id} onChange={handleChange} readOnly={pageName=="마이페이지"} />
         </div>
 
-        <div>
+        {pageName=="회원가입"&& <><div>
           <label>비밀번호 : </label>
           <input
             type="password"
@@ -60,7 +54,7 @@ const handleSubmit = (e) => {
             value={form.pwConfirm}
             onChange={handleChange}
           />
-        </div>
+        </div> </>}
 
         <div>
           <label>이름 : </label>
@@ -96,8 +90,8 @@ const handleSubmit = (e) => {
           <label>우편번호 : </label>
           <input
             type="text"
-            name="zoneCode"
-            value={form.zoneCode}
+            name="zone_code"
+            value={form.zone_code}
             onChange={handleChange}
           />
         </div>
@@ -123,6 +117,8 @@ const handleSubmit = (e) => {
         </div>
         {btns}
       </form>
+        </div>
+
     )
 }
 
