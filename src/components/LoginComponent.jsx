@@ -12,7 +12,16 @@ const LoginComponent = () => {
 
     const [loginInfo, setLoginInfo] = useState({
         id: '', pw: ''
-    })
+    })  
+    
+    const {loginId , isLoggedIn} = useAuthStore();
+    
+      const logout = useAuthStore((state) => state.logout);
+    
+      const handleLogout = ()=>{
+        axios.post("http://10.5.5.1/member/logout").then(logout());
+      }
+    
 
     const handleChange = (e) => {
         const {name , value} = e.target;
@@ -24,7 +33,7 @@ const LoginComponent = () => {
 
     const handleLoggin = () =>{
 
-        axios.post(`http://10.5.5.1/member/login`, loginInfo)
+        axios.post(`http://10.5.5.1/member/login`, loginInfo, { withCredentials: true })
         .then(e=>{
           
             if(e.data.status==="success"){
@@ -38,14 +47,56 @@ const LoginComponent = () => {
 
     }
 
-    return(
+    const handleDeleteMember = () =>{
+
+        axios.delete(`http://10.5.5.2/member/${loginId}`, {withCredentials: true})
+        .then((e) => {
+
+            if(e.data.status === "success"){
+                console.log("회원탈퇴 완료")
+                alert(e.data.message);
+                logout(loginId)
+            }else{
+                console.log("회원탈퇴 실패");
+                alert(e.data.message)
+            }
+         
+        }).catch(error => {
+            console.error(error);
+        })
+    }
+
+    return (
+  isLoggedIn ? (
     <div className={styles.LoginComponent}>
-        <input type="text" name="id" placeholder="id를 입력해주세요" value={loginInfo.id} onChange={handleChange} />
-        <input type="text" name="pw" placeholder="pw를 입력해주세요" value={loginInfo.pw} onChange={handleChange} />
-        <button onClick={handleLoggin}>로그인</button>
-        <Link to="/joinPage"><button>회원가입</button></Link>
+      로그인되었습니다. 아이디: {loginId}
+      <button onClick={handleLogout}>로그아웃</button>
+       <button onClick={handleDeleteMember}>회원탈퇴</button>
     </div>
-    )
+  ) : (
+    <div className={styles.LoginComponent}>
+      <input
+        type="text"
+        name="id"
+        placeholder="id를 입력해주세요"
+        value={loginInfo.id}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="pw"
+        placeholder="pw를 입력해주세요"
+        value={loginInfo.pw}
+        onChange={handleChange}
+      />
+      <button onClick={handleLoggin}>로그인</button>
+      <Link to="/joinPage">
+        <button>회원가입</button>
+      </Link>
+    </div>
+  )
+);
+
 }
 
 export default LoginComponent;
