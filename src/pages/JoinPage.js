@@ -34,8 +34,8 @@ const navigate = useNavigate();
     console.log(form);
     e.preventDefault();
     axios.post("http://10.5.5.1/member/join", form)
-    .then(resp=>(console.log(resp))
-    .then(navigate("/")))
+    .then(resp=>(console.log(resp)))
+    .then(navigate("/"))
   };
    
   

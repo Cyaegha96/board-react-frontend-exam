@@ -1,7 +1,7 @@
 const BoardPage =  () => {
     return (
         <>
-        게시판
+          <h2>게시판</h2>
         </>
     )
 }

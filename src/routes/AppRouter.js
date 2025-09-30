@@ -4,6 +4,7 @@ import MainLayout from "../layout/MainLayout"
 import Home from "../pages/Home"
 import JoinPage from "../pages/JoinPage";
 import BoardPage from "../pages/BoardPage"
+import MyPage from "../pages/MyPage";
 
 const AppRouter = () => {
 
@@ -14,6 +15,7 @@ const AppRouter = () => {
 
             <Route index path="/" element={<MainLayout><Home/></MainLayout>}></Route>
              <Route index path="/joinPage" element={<MainLayout><JoinPage/></MainLayout>}></Route>
+               <Route index path="/mypage" element={<MainLayout><MyPage/></MainLayout>}></Route>
               <Route index path="/board" element={<MainLayout><BoardPage/></MainLayout>}></Route>
             </Routes>
         </Router>

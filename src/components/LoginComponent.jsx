@@ -38,6 +38,7 @@ const LoginComponent = () => {
           
             if(e.data.status==="success"){
                 login(e.data.loginId);
+                
             }else{
                 
                 alert("로그인에 실패했습니다.")

@@ -6,10 +6,15 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+ border: 1px solid black;
+}
 
+.LoginComponent input{
+    width: 100%;
 }
 
 .MenuComponent {
+     border: 1px solid black;
      width: 100%;
    height: 70%;
 }

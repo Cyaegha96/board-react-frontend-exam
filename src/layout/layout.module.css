@@ -9,23 +9,23 @@
 
 }
 
-
-
 .Headers {
     height:10%;
       display: flex;
     justify-content: space-evenly; 
-   
+    border: 1px solid black;
 }
 
 .LeftNavi{
     width: 30%;
     height:100%;
+     border: 1px solid black;
 }
 
 .RightContent{
      width: 70%;
      height:100%;
+      border: 1px solid black;
 }
 
 .Contents{
