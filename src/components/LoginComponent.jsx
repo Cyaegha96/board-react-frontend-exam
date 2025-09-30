@@ -3,7 +3,7 @@ import axios from "axios"
 import styles from "./components.module.css"
 import useAuthStore from "../store/authStore"
 import {Link} from "react-router-dom"
-
+import api from '../utils/api';
 axios.defaults.withCredentials = true;
 
 const LoginComponent = () => {
@@ -19,7 +19,7 @@ const LoginComponent = () => {
       const logout = useAuthStore((state) => state.logout);
     
       const handleLogout = ()=>{
-        axios.post("http://10.5.5.1/member/logout").then(logout());
+        api.post("/member/logout").then(logout());
       }
     
 
@@ -33,7 +33,7 @@ const LoginComponent = () => {
 
     const handleLoggin = () =>{
 
-        axios.post(`http://10.5.5.1/member/login`, loginInfo, { withCredentials: true })
+        api.post(`/member/login`, loginInfo, { withCredentials: true })
         .then(e=>{
           
             if(e.data.status==="success"){
@@ -57,7 +57,7 @@ const LoginComponent = () => {
     return; // 사용자가 취소를 누르면 아무 것도 하지 않음
   }
 
-  axios.delete(`http://10.5.5.1/member/${loginId}`, { withCredentials: true })
+ api.delete(`/member/${loginId}`, { withCredentials: true })
     .then((e) => {
       if (e.data.status === "success") {
         console.log("회원탈퇴 완료");

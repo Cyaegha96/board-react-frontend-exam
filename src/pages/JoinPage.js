@@ -2,7 +2,7 @@ import styles from "../layout/signUp.module.css";
 import {useState} from "react";
 import  {useNavigate}  from "react-router-dom";
 import axios from "axios";
-
+import api from '../utils/api';
 const JoinPage = () => {
 
 const navigate = useNavigate();
@@ -33,7 +33,7 @@ const navigate = useNavigate();
   const handleSubmit = (e) => {
     console.log(form);
     e.preventDefault();
-    axios.post("http://10.5.5.1/member/join", form)
+    api.post("/member/join", form)
     .then(resp=>(console.log(resp)))
     .then(navigate("/"))
   };
