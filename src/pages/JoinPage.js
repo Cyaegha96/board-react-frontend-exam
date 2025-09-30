@@ -1,8 +1,12 @@
 import styles from "../layout/signUp.module.css";
 import {useState} from "react";
+import  {useNavigate}  from "react-router-dom";
 import axios from "axios";
 
 const JoinPage = () => {
+
+const navigate = useNavigate();
+
     const [form,setForm] = useState({
         id:"",
         pw:"",
@@ -29,7 +33,9 @@ const JoinPage = () => {
   const handleSubmit = (e) => {
     console.log(form);
     e.preventDefault();
-    axios.post("http://localhost/member/join", form).then(resp=>(console.log(resp)))
+    axios.post("http://10.5.5.1/member/join", form)
+    .then(resp=>(console.log(resp))
+    .then(navigate("/")))
   };
    
   

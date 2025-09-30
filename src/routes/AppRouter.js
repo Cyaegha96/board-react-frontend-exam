@@ -14,7 +14,7 @@ const AppRouter = () => {
 
             <Route index path="/" element={<MainLayout><Home/></MainLayout>}></Route>
              <Route index path="/joinPage" element={<MainLayout><JoinPage/></MainLayout>}></Route>
-              <Route index path="/boardPage" element={<MainLayout><BoardPage/></MainLayout>}></Route>
+              <Route index path="/board" element={<MainLayout><BoardPage/></MainLayout>}></Route>
             </Routes>
         </Router>
     )

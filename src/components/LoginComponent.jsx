@@ -47,24 +47,30 @@ const LoginComponent = () => {
 
     }
 
-    const handleDeleteMember = () =>{
+    
 
-        axios.delete(`http://10.5.5.2/member/${loginId}`, {withCredentials: true})
-        .then((e) => {
+    const handleDeleteMember = () => {
+  const confirmed = window.confirm("정말 회원탈퇴 하시겠습니까?");
 
-            if(e.data.status === "success"){
-                console.log("회원탈퇴 완료")
-                alert(e.data.message);
-                logout(loginId)
-            }else{
-                console.log("회원탈퇴 실패");
-                alert(e.data.message)
-            }
-         
-        }).catch(error => {
-            console.error(error);
-        })
-    }
+  if (!confirmed) {
+    return; // 사용자가 취소를 누르면 아무 것도 하지 않음
+  }
+
+  axios.delete(`http://10.5.5.1/member/${loginId}`, { withCredentials: true })
+    .then((e) => {
+      if (e.data.status === "success") {
+        console.log("회원탈퇴 완료");
+        alert(e.data.message);
+        logout(loginId);
+      } else {
+        console.log("회원탈퇴 실패");
+        alert(e.data.message);
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
 
     return (
   isLoggedIn ? (
