@@ -1,0 +1,47 @@
+
+input {
+    @apply border border-gray-300 rounded-md
+    focus:outline-none focus:ring-2 focus:ring-blue-400
+    placeholder-gray-400 text-gray-800
+    transition duration-200;
+}
+
+button{
+    @apply px-4 py-2 bg-white text-gray-800 border border-gray-200 rounded-md
+    shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400
+    transition duration-200;
+}
+
+ul {
+    @apply list-disc ml-5; /* 점 표시 + 들여쓰기 */
+}
+
+ol{
+    @apply list-decimal ml-5;
+}
+
+blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+}
+
+h1 {
+    @apply text-3xl font-bold my-4;
+}
+
+h2 {
+    @apply text-2xl font-semibold my-3;
+}
+
+h3 {
+    @apply text-xl font-semibold my-2;
+}
+
+
+
+p{
+    border: none;
+}
+

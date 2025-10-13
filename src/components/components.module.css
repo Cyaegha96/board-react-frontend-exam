@@ -33,3 +33,16 @@
     flex-direction: column;
 
 }
+pre {
+    background: #1e1e1e;     /* 배경 */
+    color: #d4d4d4;          /* 기본 텍스트 */
+    font-family: "Fira Code", monospace;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+.ProseMirror-focused {
+    all: unset;  /* 필요시 스타일 초기화 */
+}
+
